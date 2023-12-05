@@ -15,18 +15,11 @@
     background: url("../assets/expand.svg") no-repeat 116px 18px $purple;
 
     option {
-        background-color: $light;
+        background-color: $background;
         color: $purple;
     }
 
     &:hover {
         background-color: $purple-dark;
-    }
-}
-
-.select.dark {
-    option {
-        background-color: $dark;
-        color: $purple;
     }
 }

@@ -8,18 +8,19 @@
     background: rgba(37, 37, 37, 0.70);
     display: flex;
     justify-content: center;
-
+    z-index: 9999;
     .add-task-content {
         margin-top: 10%;
         display: flex;
         flex-direction: column;
         gap: 16px;
         border-radius: 16px;
-        background: $light;
+        background: $background;
         width: 500px;
         height: 289px;
         flex-shrink: 0;
         padding: 18px 30px;
+        border: 1px solid $light;
 
         input {
             padding: 8px 16px;
@@ -69,7 +70,7 @@
             }
 
             .apply {
-                color: $light;
+                color: $text;
                 display: inline-flex;
                 padding: 10px 22px;
                 flex-direction: column;
@@ -88,22 +89,22 @@
     }
 }
 
-.add-task-popup.dark {
-    .add-task-content {
-        border: 1px solid $light;
-        background: $dark;
-    }
+// .add-task-popup.dark {
+//     .add-task-content {
+//         border: 1px solid $light;
+//         background: $dark;
+//     }
 
-    input {
-        color: $light;
-        border: 2px solid $light;
+//     input {
+//         color: $light;
+//         border: 2px solid $light;
 
-        &::placeholder {
-            color: #666;
-        }
+//         &::placeholder {
+//             color: #666;
+//         }
 
-        &:focus {
-            box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.40);
-        }
-    }
-}
+//         &:focus {
+//             box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.40);
+//         }
+//     }
+// }

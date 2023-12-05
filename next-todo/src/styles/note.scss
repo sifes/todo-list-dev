@@ -11,7 +11,7 @@
 
     .text {
         flex: 1 1 auto;
-        color: $dark;
+        color: $text;
         font-size: 20px;
         font-weight: 500;
         line-height: 100%;
@@ -81,13 +81,13 @@
     }
 }
 
-.note.dark {
-    .text {
-        color: $light;
-    }
+// .note.dark {
+//     .text {
+//         color: $light;
+//     }
 
-    .text.done {
-        color: rgba(255, 255, 255, 0.50);
-        text-decoration: line-through;
-    }
-}
+//     .text.done {
+//         color: rgba(255, 255, 255, 0.50);
+//         text-decoration: line-through;
+//     }
+// }
