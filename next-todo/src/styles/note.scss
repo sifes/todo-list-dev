@@ -1,0 +1,93 @@
+@import './variables.scss';
+
+.note {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid $purple-light;
+
+    .text {
+        flex: 1 1 auto;
+        color: $dark;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 100%;
+        transition: .1s ease;
+    }
+
+    .text.done {
+        color: rgba(37, 37, 37, 0.50);
+        text-decoration: line-through;
+    }
+
+    .checkbox {
+        flex-shrink: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: 2px solid $purple;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+
+        &:checked {
+            width: 26px;
+            height: 26px;
+            background: url("../assets/checkbox.svg") no-repeat 4px 2px;
+            background-color: $purple;
+            border-color: $purple;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .btn-edit {
+        flex-shrink: 0;
+        background: url("../assets/edit.svg") no-repeat center center;
+        border: none;
+        border-radius: 5px;
+        width: 24px;
+        height: 24px;
+        padding: 12px;
+        cursor: pointer;
+        transition: background-color 0.20s ease;
+
+        &:hover {
+            background-color: $purple-dark;
+        }
+
+    }
+
+    .btn-delete {
+        flex-shrink: 0;
+        background: url("../assets/delete.svg") no-repeat center center;
+        border: none;
+        border-radius: 5px;
+        width: 24px;
+        height: 24px;
+        padding: 12px;
+        cursor: pointer;
+        transition: background-color 0.20s ease;
+
+        &:hover {
+            background-color: $purple-dark;
+        }
+    }
+}
+
+.note.dark {
+    .text {
+        color: $light;
+    }
+
+    .text.done {
+        color: rgba(255, 255, 255, 0.50);
+        text-decoration: line-through;
+    }
+}

@@ -1,0 +1,32 @@
+@import './variables.scss';
+
+.select {
+    padding: 12px;
+    gap: 10px;
+    color: $light;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 1em;
+    transition: background-color 0.25s ease-in-out;
+    background: url("../assets/expand.svg") no-repeat 116px 18px $purple;
+
+    option {
+        background-color: $light;
+        color: $purple;
+    }
+
+    &:hover {
+        background-color: $purple-dark;
+    }
+}
+
+.select.dark {
+    option {
+        background-color: $dark;
+        color: $purple;
+    }
+}

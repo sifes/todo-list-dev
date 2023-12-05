@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.20s ease;
+    background-color: $purple;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+
+    &:hover {
+        background-color: $purple-dark;
+    }
+}

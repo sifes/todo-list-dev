@@ -1,17 +1,23 @@
 import { create } from 'zustand';
 
+interface Task {
+  id: number;
+  title: string;
+  isDone: boolean;
+}
+
 interface AppState {
-  count: number;
-  increment: () => void;
-  decrement: () => void;
+  tasks: Task[];
+  addTask: () => void;
+  removeTask: () => void;
 }
 
 export const useStore = create<AppState>()((set) => ({
-  count: 0,
-  increment: () => {
-    set((state) => ({ count: state.count + 1 }));
+  tasks: [],
+  addTask: () => {
+    set((state) => ({ tasks: [...state.tasks, { id: 1, title: 'test', isDone: false }] }));
   },
-  decrement: () => {
-    set((state) => ({ count: state.count - 1 }));
+  removeTask: () => {
+    set((state) => ({ tasks: state.tasks.filter((task) => task.id !== 1) }));
   },
 }));

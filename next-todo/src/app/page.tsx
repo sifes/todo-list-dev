@@ -1,10 +1,5 @@
-import { AddTask } from '@/components/AddTask';
-import styles from './page.module.scss';
+import { redirect, RedirectType } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <AddTask />
-    </main>
-  );
+  redirect('/todos', 'replace' as RedirectType);
 }
