@@ -1,14 +1,14 @@
+import { useStore } from '@/store/useStore';
 import React from 'react';
-interface SelectProps {
-  setFilters: React.Dispatch<React.SetStateAction<'all' | 'completed' | 'not-completed'>>;
-}
+interface SelectProps {}
 
-export const Select: React.FC<SelectProps> = ({ setFilters }) => {
+export const Select: React.FC<SelectProps> = () => {
+  const { setFilter } = useStore();
   return (
     <select
       className={`select`}
       onChange={(e) => {
-        setFilters(e.target.value as 'all' | 'completed' | 'not-completed');
+        setFilter(e.target.value as 'all' | 'completed' | 'not-completed');
       }}
     >
       <option value='all'>All</option>

@@ -8,9 +8,11 @@
 @import './note.scss';
 @import './add-task-popup.scss';
 @import './no-tasks.scss';
+@import './common.scss';
 
 body {
     font-family: 'Kanit', sans-serif;
+    background-color: $background;
 }
 
 .wrapper {

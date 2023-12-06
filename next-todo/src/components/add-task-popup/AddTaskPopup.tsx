@@ -1,47 +1,91 @@
 import React from 'react';
+import { useStore } from '@/store/useStore';
+import closeIcon from '../../assets/close.svg';
+interface AddTaskPopupProps {}
 
-interface AddTaskPopupProps {
-  isShown: boolean;
-  setIsShown: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const AddTaskPopup: React.FC<AddTaskPopupProps> = () => {
+  const { toggleAddPopupShown, addTask } = useStore();
 
-export const AddTaskPopup: React.FC<AddTaskPopupProps> = ({ setIsShown }) => {
-  const [value, setValue] = React.useState<string>('');
+  const [errors, setError] = React.useState<{
+    title: string | null;
+    description: string | null;
+  }>({ title: null, description: null });
+  const [title, setTitle] = React.useState<string>('');
+  const [description, setDescription] = React.useState<string>('');
+  const [isDescriptionShown, setIsDescriptionShown] = React.useState<boolean>(false);
+
   return (
     <div
       className={`add-task-popup`}
       onClick={() => {
-        setIsShown(false);
+        toggleAddPopupShown();
       }}
     >
       <article
-        className='add-task-content'
+        className="add-task-content"
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        <div className='title'>New Note</div>
+        <div className="title">New Note</div>
         <input
-          type='text'
-          placeholder='Input your note...'
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          type="title"
+          placeholder="Enter task title..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           autoFocus
         />
-        <div className='actions'>
-          <button
-            className='cancel'
+        {errors && <div className="error">{errors.title}</div>}
+        {!isDescriptionShown ? (
+          <div
+            className={`description-toggle btn ${isDescriptionShown ? 'shown' : ''}`}
             onClick={() => {
-              setIsShown(false);
+              setIsDescriptionShown(true);
+            }}
+          >
+            Add description
+          </div>
+        ) : (
+          <div className="description-wrapper">
+            <input
+              type="description"
+              placeholder="Enter task description..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <img
+              className="close"
+              src={closeIcon.src}
+              alt="close"
+              onClick={(e) => {
+                setIsDescriptionShown(false);
+                setError((p) => ({ ...p, description: null }));
+              }}
+            />
+            {errors && <div className="error">{errors.description}</div>}
+          </div>
+        )}
+        <div className="actions">
+          <button
+            className="cancel btn btn--transparent"
+            onClick={() => {
+              toggleAddPopupShown();
+              setError((p) => ({ title: null, description: null }));
             }}
           >
             Cancel
           </button>
           <button
-            className='apply'
+            className="apply btn"
             onClick={() => {
-              if (value) {
-                setIsShown(false);
+              if (!title || (isDescriptionShown && !description)) {
+                setError((p) => ({ ...p, title: 'Title is required' }));
+                if (isDescriptionShown && !description) {
+                  setError((p) => ({ ...p, description: 'Description is required' }));
+                }
+              } else {
+                addTask({ title, description });
+                toggleAddPopupShown();
               }
             }}
           >

@@ -10,35 +10,42 @@ import React from 'react';
 import { useStore } from '@/store/useStore';
 
 export default function TodosPage() {
-  const { tasks } = useStore();
-  const [isPopupShown, setIsPopupShown] = React.useState<boolean>(false);
-  const [currentTasks, setCurrentTasks] = React.useState(tasks);
-  const [searchValue, setSearchValue] = React.useState('');
-  const [filter, setFilters] = React.useState<'all' | 'completed' | 'not-completed'>('all');
+  const { tasks, isAddPopupShown, filter } = useStore();
+  const [shownTasks, setShownTasks] = React.useState(tasks);
+
+  React.useEffect(() => {
+    if (filter === 'all') {
+      setShownTasks(tasks);
+    } else if (filter === 'completed') {
+      setShownTasks(tasks.filter((task) => task.done));
+    } else {
+      setShownTasks(tasks.filter((task) => !task.done));
+    }
+  }, [filter, tasks]);
 
   return (
     <div className={`wrapper`}>
       <div className='header'>
         <div className='title'>TODO LIST</div>
         <div className='actions'>
-          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-          <Select setFilters={setFilters} />
+          <Search />
+          <Select />
           <ThemeToggle />
         </div>
       </div>
       <div className='body'>
         <ul className='list'>
-          {currentTasks.length ? (
-            currentTasks.map(function (task) {
+          {shownTasks.length ? (
+            shownTasks.map(function (task) {
               return <Note key={task.id} {...task} />;
             })
           ) : (
             <NoTasks />
           )}
         </ul>
-        <AddButton setIsShown={setIsPopupShown} />
+        <AddButton />
       </div>
-      {isPopupShown && <AddTaskPopup isShown={isPopupShown} setIsShown={setIsPopupShown} />}
+      {isAddPopupShown && <AddTaskPopup />}
     </div>
   );
 }

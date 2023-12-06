@@ -1,21 +1,21 @@
 import React from 'react';
 import searchIcon from '../../assets/search.svg';
+import { useStore } from '@/store/useStore';
 
-interface SearchProps {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-}
+interface SearchProps {}
 
-export const Search: React.FC<SearchProps> = ({ setSearchValue, searchValue }) => {
+export const Search: React.FC<SearchProps> = () => {
+  const { searchValue, setSearchValue } = useStore();
+
   return (
     <div className={`search`}>
       <input
-        type='text'
-        placeholder='Search note...'
+        type="text"
+        placeholder="Search note..."
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <img src={searchIcon.src} alt='search' />
+      <img src={searchIcon.src} alt="search" />
     </div>
   );
 };

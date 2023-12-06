@@ -1,23 +1,37 @@
+import { AppState } from '@/app/lib/types/store';
 import { create } from 'zustand';
-
-interface Task {
-  id: number;
-  title: string;
-  isDone: boolean;
-}
-
-interface AppState {
-  tasks: Task[];
-  addTask: () => void;
-  removeTask: () => void;
-}
 
 export const useStore = create<AppState>()((set) => ({
   tasks: [],
-  addTask: () => {
-    set((state) => ({ tasks: [...state.tasks, { id: 1, title: 'test', isDone: false }] }));
+  searchValue: '',
+  filter: 'all',
+  isAddPopupShown: false,
+  addTask: (task) => {
+    set((state) => ({
+      tasks: [...state.tasks, { id: Date.now(), done: false, ...task }],
+    }));
   },
-  removeTask: () => {
-    set((state) => ({ tasks: state.tasks.filter((task) => task.id !== 1) }));
+  removeTask: (id) => {
+    set((state) => ({ tasks: state.tasks.filter((t) => t.id !== id) }));
+  },
+  toggleDone: (id) => {
+    set((state) => ({
+      tasks: state.tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
+    }));
+  },
+  toggleAddPopupShown: () => {
+    set((state) => ({
+      isAddPopupShown: !state.isAddPopupShown,
+    }));
+  },
+  setFilter: (filter) => {
+    set(() => ({
+      filter: filter,
+    }));
+  },
+  setSearchValue: (value) => {
+    set(() => ({
+      searchValue: value,
+    }));
   },
 }));
