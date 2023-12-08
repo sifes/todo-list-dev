@@ -8,66 +8,10 @@
 @import './note.scss';
 @import './add-task-popup.scss';
 @import './no-tasks.scss';
+@import './main-page.scss';
 @import './common.scss';
 
 body {
     font-family: 'Kanit', sans-serif;
     background-color: $background;
-}
-
-.wrapper {
-    color: $text;
-    background-color: $background;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 1400px;
-    align-items: center;
-    padding: 0 60px;
-    min-height: 100vh;
-}
-
-.wrapper.dark {
-    background-color: $background;
-    color: $text;
-}
-
-.actions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
-.header {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    width: 100%;
-}
-
-.title {
-    color: inherit;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-align: center;
-}
-
-
-// ----------------------------------- body ------------------------------------- //
-.body {
-    flex: 1 1 auto;
-    margin-top: 30px;
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    .list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
 }

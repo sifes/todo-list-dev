@@ -27,7 +27,7 @@ export const Description: React.FC<DescriptionProps> = ({
   errors,
 }) => {
   return (
-    <div>
+    <>
       {!isDescriptionShown ? (
         <div
           className={`description-toggle btn ${isDescriptionShown ? 'shown' : ''}`}
@@ -57,6 +57,6 @@ export const Description: React.FC<DescriptionProps> = ({
           {errors && <div className="error">{errors.description}</div>}
         </div>
       )}
-    </div>
+    </>
   );
 };

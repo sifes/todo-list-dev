@@ -11,8 +11,7 @@ interface TitleProps {
 
 export const Title: React.FC<TitleProps> = ({ errors, setTitle, title }) => {
   return (
-    <>
-      <div className="title">New Note</div>
+    <div>
       <input
         type="title"
         placeholder="Enter task title..."
@@ -21,6 +20,6 @@ export const Title: React.FC<TitleProps> = ({ errors, setTitle, title }) => {
         autoFocus
       />
       {errors && <div className="error">{errors.title}</div>}
-    </>
+    </div>
   );
 };

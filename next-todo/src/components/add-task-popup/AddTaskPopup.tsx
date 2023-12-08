@@ -17,6 +17,7 @@ export const AddTaskPopup: React.FC<AddTaskPopupProps> = () => {
 
   return (
     <Modal>
+      <h3 className="title">New Note</h3>
       <Title errors={errors} setTitle={setTitle} title={title} />
       <Description
         setIsDescriptionShown={setIsDescriptionShown}
