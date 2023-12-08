@@ -15,10 +15,10 @@ export const Note: React.FC<NoteProps> = (task) => {
   const [isDescriptionShown, setIsDescriptionShown] = React.useState(false);
 
   return (
-    <li className={`note`}>
+    <li className="note hvr-glow hvr-underline-from-center">
       <input checked={task.done} onChange={() => toggleDone(task.id)} type="checkbox" className="checkbox" />
       <div className={`note-content ${task.done ? 'done' : ''}`}>
-        <h5 className="text">{task.title}</h5>
+        <h5 className="title">{task.title}</h5>
         {isDescriptionShown && <p className="description">{task.description}</p>}
       </div>
       <div className="actions">
