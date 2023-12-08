@@ -10,11 +10,11 @@ export const Modal: React.FC<ModalProps> = ({ children }) => {
   const [mouseHeld, setMouseHeld] = React.useState(false);
 
   const handleMouseDown = () => {
-    setMouseHeld(true);
+    setMouseHeld(() => true);
   };
 
   const handleMouseUp = () => {
-    setMouseHeld(false);
+    setMouseHeld(() => false);
   };
 
   const handleClose = () => {
@@ -24,8 +24,13 @@ export const Modal: React.FC<ModalProps> = ({ children }) => {
   };
 
   return (
-    <div className="add-task-popup" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onClick={handleClose}>
-      <article className="add-task-content" onClick={(e) => e.stopPropagation()}>
+    <div className="add-task-popup" onClick={handleClose}>
+      <article
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        className="add-task-content"
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </article>
     </div>
