@@ -15,9 +15,14 @@ export const useStore = create<AppState>()((set) => ({
     set((state) => ({ tasks: state.tasks.filter((t) => t.id !== id) }));
   },
   toggleDone: (id) => {
-    set((state) => ({
-      tasks: state.tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
-    }));
+    set((state) => {
+      const task = state.tasks.find((t) => t.id === id);
+      if (task) {
+        task.done = !task.done;
+        console.log(task);
+      }
+      return { tasks: [...state.tasks] };
+    });
   },
   toggleAddPopupShown: () => {
     set((state) => ({

@@ -12,8 +12,8 @@
     appearance: none;
     padding-right: 1em;
     transition: background-color 0.25s ease-in-out;
-    background: url("../assets/expand.svg") no-repeat 116px 18px $purple;
-
+    background: url("../assets/expand-white.svg") no-repeat 118px 12px $purple;
+    background-size: 16px 16px;
     option {
         background-color: $background;
         color: $purple;

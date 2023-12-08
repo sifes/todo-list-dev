@@ -65,13 +65,9 @@ body {
     position: relative;
 
     .list {
-        max-width: 520px;
-        margin: 0 auto;
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         gap: 12px;
     }
 }
