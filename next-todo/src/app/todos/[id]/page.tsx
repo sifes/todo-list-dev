@@ -8,8 +8,8 @@ interface PageProps {}
 
 const Page: React.FC<PageProps> = () => {
   const inputDescRef = React.useRef<HTMLInputElement>(null);
-  const { tasks, removeTask, toggleDone, editTask } = useStore();
   const params = useParams();
+  const { tasks, removeTask, toggleDone, editTask } = useStore();
   const [task, setTask] = React.useState<Task>({} as Task);
   const [isEditing, setIsEditing] = React.useState<boolean>(false);
 
@@ -25,6 +25,8 @@ const Page: React.FC<PageProps> = () => {
     });
     if (task) {
       setTask(task);
+      setTitleInput(task.title);
+      setDescriptionInput(task.description);
     }
   }, [isEditing]);
   return (
@@ -32,57 +34,61 @@ const Page: React.FC<PageProps> = () => {
       <div className="body">
         <h2 className="title">Just Do It!</h2>
         <div className="note-page">
-          {isEditing ? (
-            <>
-              <input
-                className="note-page__input"
-                type="text"
-                placeholder="Type something..."
-                autoFocus
-                defaultValue={task.title}
-                value={titleInput}
-                onChange={(e) => setTitleInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    if (titleInput) {
-                      setError({ title: null });
-                      if (inputDescRef.current) {
-                        inputDescRef.current.focus();
+          <div className="note-page__body">
+            {isEditing ? (
+              <>
+                <input
+                  className="note-page__input"
+                  type="text"
+                  placeholder="Type something..."
+                  autoFocus
+                  defaultValue={task.title}
+                  value={titleInput}
+                  onChange={(e) => setTitleInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      if (titleInput) {
+                        setError({ title: null });
+                        if (inputDescRef.current) {
+                          inputDescRef.current.focus();
+                        }
+                      } else {
+                        setError({ title: 'Title is required' });
                       }
-                    } else {
-                      setError({ title: 'Title is required' });
                     }
-                  }
-                }}
-              />
-              {errors.title && <div className="note-page__error">{errors.title}</div>}
-              <input
-                className="note-page__input"
-                type="text"
-                ref={inputDescRef}
-                placeholder="Type something..."
-                defaultValue={task.description}
-                value={descriptionInput}
-                onChange={(e) => setDescriptionInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    if (titleInput) {
-                      setError({ title: null });
-                      editTask(titleInput, task.id, descriptionInput);
-                      setIsEditing(false);
-                    } else {
-                      setError({ title: 'Title is required' });
+                  }}
+                />
+                {errors.title && <div className="note-page__error">{errors.title}</div>}
+                <hr className="divider" />
+                <input
+                  className="note-page__input"
+                  type="text"
+                  ref={inputDescRef}
+                  placeholder="Type something..."
+                  defaultValue={task.description}
+                  value={descriptionInput}
+                  onChange={(e) => setDescriptionInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      if (titleInput) {
+                        setError({ title: null });
+                        editTask(titleInput, task.id, descriptionInput);
+                        setIsEditing(false);
+                      } else {
+                        setError({ title: 'Title is required' });
+                      }
                     }
-                  }
-                }}
-              />
-            </>
-          ) : (
-            <>
-              <div className="note-page__title">{task.title}</div>
-              <div className="note-page__body">{task.description}</div>
-            </>
-          )}
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <div className={`note-page__title ${task.done ? 'done' : ''}`}>{task.title}</div>
+                <hr className="divider" />
+                <div className={`note-page__description ${task.done ? 'done' : ''}`}>{task.description}</div>
+              </>
+            )}
+          </div>
           <div className="note-page__actions actions-note-page">
             <button className="actions-note-page__done btn" onClick={() => toggleDone(task.id)}>
               {task.done ? 'Undone' : 'Done'}
