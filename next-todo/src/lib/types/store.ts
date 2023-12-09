@@ -13,4 +13,5 @@ export interface AppState {
   toggleAddPopupShown: () => void;
   setFilter: (filter: Filter) => void;
   setSearchValue: (value: string) => void;
+  editTask: (title: string, id: number, description?: string) => void;
 }

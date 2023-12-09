@@ -1,6 +1,8 @@
 import { useStore } from '@/store/useStore';
 import React from 'react';
 import expandIcon from '../../assets/expand.svg';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface NoteProps {
   title: string;
@@ -11,12 +13,19 @@ interface NoteProps {
 
 export const Note: React.FC<NoteProps> = (task) => {
   const { toggleDone, removeTask, tasks } = useStore();
+  const router = useRouter();
 
   const [isDescriptionShown, setIsDescriptionShown] = React.useState(false);
 
   return (
-    <li className="note hvr-glow hvr-underline-from-center">
-      <input checked={task.done} onChange={() => toggleDone(task.id)} type="checkbox" className="checkbox" />
+    <li className="note hvr-glow hvr-underline-from-center" onClick={() => router.push(`/todos/${task.id}`)}>
+      <input
+        checked={task.done}
+        onClick={(e) => e.stopPropagation()}
+        onChange={() => toggleDone(task.id)}
+        type="checkbox"
+        className="checkbox"
+      />
       <div className={`note-content ${task.done ? 'done' : ''}`}>
         <h5 className="title">{task.title}</h5>
         {isDescriptionShown && <p className="description">{task.description}</p>}
@@ -37,7 +46,7 @@ export const Note: React.FC<NoteProps> = (task) => {
               setIsDescriptionShown((p) => !p);
             }}
           >
-            <img src={expandIcon.src} alt="see more" />
+            <img src={expandIcon.src} alt="see description" />
           </button>
         )}
       </div>

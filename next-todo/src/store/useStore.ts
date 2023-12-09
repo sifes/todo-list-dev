@@ -1,4 +1,4 @@
-import { AppState } from '@/app/lib/types/store';
+import { AppState } from '@/lib/types/store';
 import { create } from 'zustand';
 
 export const useStore = create<AppState>()((set) => ({
@@ -19,7 +19,6 @@ export const useStore = create<AppState>()((set) => ({
       const task = state.tasks.find((t) => t.id === id);
       if (task) {
         task.done = !task.done;
-        console.log(task);
       }
       return { tasks: [...state.tasks] };
     });
@@ -38,5 +37,15 @@ export const useStore = create<AppState>()((set) => ({
     set(() => ({
       searchValue: value,
     }));
+  },
+  editTask: (title, id, description) => {
+    set((state) => {
+      const task = state.tasks.find((t) => t.id === id);
+      if (task) {
+        task.title = title;
+        task.description = description;
+      }
+      return { tasks: [...state.tasks] };
+    });
   },
 }));
