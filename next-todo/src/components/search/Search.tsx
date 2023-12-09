@@ -8,14 +8,15 @@ export const Search: React.FC<SearchProps> = () => {
   const { searchValue, setSearchValue } = useStore();
 
   return (
-    <div className={`search`}>
+    <div className="search">
       <input
         type="text"
         placeholder="Search note..."
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        className="search__input"
       />
-      <img src={searchIcon.src} alt="search" />
+      <img src={searchIcon.src} alt="search" className="search__image" />
     </div>
   );
 };

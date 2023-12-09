@@ -1,25 +1,25 @@
 @import './variables.scss';
 
 .select {
-    padding: 12px;
-    gap: 10px;
-    color: $light;
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 1em;
-    transition: background-color 0.25s ease-in-out;
-    background: url("../assets/expand-white.svg") no-repeat 118px 12px $purple;
-    background-size: 16px 16px;
-    option {
-        background-color: $background;
-        color: $purple;
-    }
+  padding: 12px;
+  gap: 10px;
+  color: $light;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 1em;
+  transition: background-color 0.25s ease-in-out;
+  background: url('../assets/expand-white.svg') no-repeat 118px 12px $purple;
+  background-size: 16px 16px;
+  &__option {
+    background-color: $background;
+    color: $purple;
+  }
 
-    &:hover {
-        background-color: $purple-dark;
-    }
+  &:hover {
+    background-color: $purple-dark;
+  }
 }

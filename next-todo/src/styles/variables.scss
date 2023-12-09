@@ -1,16 +1,16 @@
 :root {
-    --background: #F7F7F7;
-    --text: #252525
-  }
-  
-  [data-theme='dark'] {
-    --background: #252525;
-    --text: #F7F7F7;
-  }
-$purple: #6C63FF;
+  --background: #f7f7f7;
+  --text: #252525;
+}
+
+[data-theme='dark'] {
+  --background: #252525;
+  --text: #f7f7f7;
+}
+$purple: #6c63ff;
 $purple-light: #6c63ff33;
-$purple-dark: #534CC2;
-$light: #F7F7F7;
+$purple-dark: #534cc2;
+$light: #f7f7f7;
 $dark: #252525;
 
 $background: var(--background);

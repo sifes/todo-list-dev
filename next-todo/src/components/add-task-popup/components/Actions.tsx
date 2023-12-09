@@ -17,9 +17,9 @@ export const Actions: React.FC<ActionsProps> = ({ setError, isDescriptionShown, 
   const { toggleAddPopupShown, addTask } = useStore();
 
   return (
-    <div className="actions">
+    <div className="content-popup__actions">
       <button
-        className="cancel btn btn--transparent"
+        className="content-popup__cancel btn btn--transparent"
         onClick={() => {
           toggleAddPopupShown();
           setError(() => ({ title: null, description: null }));
@@ -28,7 +28,7 @@ export const Actions: React.FC<ActionsProps> = ({ setError, isDescriptionShown, 
         Cancel
       </button>
       <button
-        className="apply btn"
+        className="content-popup__apply btn"
         onClick={() => {
           if (!title || (isDescriptionShown && !description)) {
             setError((p) => ({ ...p, title: 'Title is required' }));

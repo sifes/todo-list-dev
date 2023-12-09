@@ -18,8 +18,9 @@ export const Title: React.FC<TitleProps> = ({ errors, setTitle, title }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         autoFocus
+        className="content-popup__input"
       />
-      {errors && <div className="error">{errors.title}</div>}
+      {errors && <div className="content-popup__error">{errors.title}</div>}
     </div>
   );
 };

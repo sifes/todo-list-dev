@@ -30,7 +30,7 @@ export const Description: React.FC<DescriptionProps> = ({
     <>
       {!isDescriptionShown ? (
         <div
-          className={`description-toggle btn ${isDescriptionShown ? 'shown' : ''}`}
+          className={`content-popup__toggle btn`}
           onClick={() => {
             setIsDescriptionShown(true);
           }}
@@ -38,15 +38,16 @@ export const Description: React.FC<DescriptionProps> = ({
           Add description
         </div>
       ) : (
-        <div className="description-wrapper">
+        <div className="content-popup__description-wrapper">
           <input
             type="description"
             placeholder="Enter task description..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="content-popup__input"
           />
           <img
-            className="close"
+            className="content-popup__close"
             src={closeIcon.src}
             alt="close"
             onClick={() => {
@@ -54,7 +55,7 @@ export const Description: React.FC<DescriptionProps> = ({
               setError((p) => ({ ...p, description: null }));
             }}
           />
-          {errors && <div className="error">{errors.description}</div>}
+          {errors && <div className="content-popup__error">{errors.description}</div>}
         </div>
       )}
     </>

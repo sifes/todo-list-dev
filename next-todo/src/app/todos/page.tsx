@@ -24,17 +24,17 @@ export default function TodosPage() {
   }, [filter, tasks]);
 
   return (
-    <div className={`wrapper`}>
-      <div className='header'>
-        <div className='title'>TODO LIST</div>
-        <div className='actions'>
+    <div className="wrapper">
+      <div className="header">
+        <div className="header__title title">TODO LIST</div>
+        <div className="header__actions">
           <Search />
           <Select />
           <ThemeToggle />
         </div>
       </div>
-      <div className='body'>
-        <ul className='list'>
+      <div className="body">
+        <ul className="list">
           {shownTasks.length ? (
             shownTasks.map(function (task) {
               return <Note key={task.id} {...task} />;

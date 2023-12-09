@@ -13,11 +13,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({}) => {
 
   if (!mounted) return null;
   return (
-    <button
-      className='toggle-theme'
-      onClick={() => (theme === 'light' ? setTheme('dark') : setTheme('light'))}
-    >
-      <img src={theme === 'light' ? nightIcon.src : dayIcon.src} alt='toggle theme' />
+    <button className="toggle-theme" onClick={() => (theme === 'light' ? setTheme('dark') : setTheme('light'))}>
+      <img className="toggle-theme__img" src={theme === 'light' ? nightIcon.src : dayIcon.src} alt="toggle theme" />
     </button>
   );
 };

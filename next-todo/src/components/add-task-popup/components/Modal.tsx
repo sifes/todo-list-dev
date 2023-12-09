@@ -28,7 +28,7 @@ export const Modal: React.FC<ModalProps> = ({ children }) => {
       <article
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        className="add-task-content"
+        className="add-task-popup__content content-popup"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

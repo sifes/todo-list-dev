@@ -1,18 +1,17 @@
 import { useStore } from '@/store/useStore';
 import React from 'react';
 import expandIcon from '../../assets/expand.svg';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface NoteProps {
   title: string;
   id: number;
   done: boolean;
-  description: string;
+  description: string | undefined;
 }
 
 export const Note: React.FC<NoteProps> = (task) => {
-  const { toggleDone, removeTask, tasks } = useStore();
+  const { toggleDone, removeTask } = useStore();
   const router = useRouter();
 
   const [isDescriptionShown, setIsDescriptionShown] = React.useState(false);
@@ -24,15 +23,15 @@ export const Note: React.FC<NoteProps> = (task) => {
         onClick={(e) => e.stopPropagation()}
         onChange={() => toggleDone(task.id)}
         type="checkbox"
-        className="checkbox"
+        className="note__checkbox"
       />
-      <div className={`note-content ${task.done ? 'done' : ''}`}>
-        <h5 className="title">{task.title}</h5>
-        {isDescriptionShown && <p className="description">{task.description}</p>}
+      <div className={`note__content content-note ${task.done ? 'done' : ''}`}>
+        <h5 className="content-note__title">{task.title}</h5>
+        {isDescriptionShown && <p className="content-note__description">{task.description}</p>}
       </div>
-      <div className="actions">
+      <div className="note__actions actions-note">
         <button
-          className="btn-delete"
+          className="actions-note__delete"
           onClick={(e) => {
             e.stopPropagation();
             removeTask(task.id);
@@ -40,7 +39,7 @@ export const Note: React.FC<NoteProps> = (task) => {
         ></button>
         {task.description && (
           <button
-            className={`btn-expand ${isDescriptionShown ? 'expanded' : ''}`}
+            className={`actions-note__expand ${isDescriptionShown ? 'expanded' : ''}`}
             onClick={(e) => {
               e.stopPropagation();
               setIsDescriptionShown((p) => !p);
