@@ -1,13 +1,14 @@
 'use client';
 import { Task } from '@/lib/types/task';
 import { useStore } from '@/store/useStore';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
-
+import BackIcon from '@/assets/back.svg';
 interface PageProps {}
 
 const Page: React.FC<PageProps> = () => {
   const inputDescRef = React.useRef<HTMLInputElement>(null);
+  const router = useRouter();
   const params = useParams();
   const { tasks, removeTask, toggleDone, editTask } = useStore();
   const [task, setTask] = React.useState<Task>({} as Task);
@@ -34,6 +35,9 @@ const Page: React.FC<PageProps> = () => {
       <div className="body">
         <h2 className="title">Just Do It!</h2>
         <div className="note-page">
+          <button className="note-page__back btn--transparent" onClick={() => router.push('/todos')}>
+            <img src={BackIcon.src} alt="back to page with todos" />
+          </button>
           <div className="note-page__body">
             {isEditing ? (
               <>
@@ -111,7 +115,13 @@ const Page: React.FC<PageProps> = () => {
             >
               {isEditing ? 'Done' : 'Edit'}
             </button>
-            <button className="actions-note-page__remove btn btn--transparent" onClick={() => removeTask(task.id)}>
+            <button
+              className="actions-note-page__remove btn btn--transparent"
+              onClick={() => {
+                removeTask(task.id);
+                router.replace('/todos');
+              }}
+            >
               Remove
             </button>
           </div>
