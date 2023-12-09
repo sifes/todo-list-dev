@@ -23,6 +23,20 @@ export default function TodosPage() {
     }
   }, [filter, tasks]);
 
+  React.useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      const parsedTasks = JSON.parse(storedTasks);
+      useStore.setState((state) => ({ ...state, tasks: parsedTasks }));
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('tasks')?.length && tasks.length) {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  }, [tasks]);
+
   return (
     <div className="wrapper">
       <div className="header">
