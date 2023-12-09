@@ -47,7 +47,6 @@
       text-decoration: line-through;
     }
   }
-  
 }
 .content-note {
   &__description {
@@ -73,6 +72,10 @@
 }
 
 .actions-note {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
   &__delete {
     flex-shrink: 0;
     background: url('../assets/delete.svg') no-repeat center center;
@@ -102,18 +105,18 @@
     border: 1px solid transparent;
     transition: border 0.2s ease;
 
-    img {
+    &-img {
       transform: rotate(180deg) translateX(-1px);
       transition: transform 0.2s ease;
     }
     &:hover {
-      img {
+      .actions-note__expand-img {
         transform: rotate(270deg) translateX(-2px);
       }
     }
     &.expanded {
       border: 1px solid $purple;
-      img {
+      .actions-note__expand--img {
         transform: rotate(270deg) translateX(-2px);
       }
     }

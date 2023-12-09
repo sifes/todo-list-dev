@@ -45,7 +45,7 @@ export const Note: React.FC<NoteProps> = (task) => {
               setIsDescriptionShown((p) => !p);
             }}
           >
-            <img src={expandIcon.src} alt="see description" />
+            <img className="actions-note__expand-img" src={expandIcon.src} alt="see description" />
           </button>
         )}
       </div>
