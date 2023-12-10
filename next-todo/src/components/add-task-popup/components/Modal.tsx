@@ -1,4 +1,4 @@
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import React from 'react';
 
 interface ModalProps {
@@ -6,7 +6,7 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ children }) => {
-  const { toggleAddPopupShown } = useStore();
+  const { toggleAddPopupShown } = useTasksStore();
   const [mouseHeld, setMouseHeld] = React.useState(false);
 
   const handleMouseDown = () => {

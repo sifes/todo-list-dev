@@ -1,11 +1,11 @@
 import React from 'react';
 import searchIcon from '../../assets/search.svg';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 
 interface SearchProps {}
 
 export const Search: React.FC<SearchProps> = () => {
-  const { searchValue, setSearchValue } = useStore();
+  const { searchValue, setSearchValue } = useTasksStore();
 
   return (
     <div className="search">

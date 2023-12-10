@@ -1,7 +1,7 @@
 import { AppState } from '@/lib/types/store';
 import { create } from 'zustand';
 
-export const useStore = create<AppState>()((set) => ({
+export const useTasksStore = create<AppState>()((set) => ({
   tasks: [],
   shownTasks: [],
   searchValue: '',
@@ -51,6 +51,7 @@ export const useStore = create<AppState>()((set) => ({
   },
   filterTasks: () => {
     set((state) => {
+      console.log(state.searchValue);
       let shownTasks = [...state.tasks];
       if (state.filter === 'completed') {
         shownTasks = shownTasks.filter((t) => t.done);

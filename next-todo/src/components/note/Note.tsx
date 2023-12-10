@@ -1,4 +1,4 @@
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import React from 'react';
 import expandIcon from '../../assets/expand.svg';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,7 @@ interface NoteProps {
 }
 
 export const Note: React.FC<NoteProps> = (task) => {
-  const { toggleDone, removeTask } = useStore();
+  const { toggleDone, removeTask } = useTasksStore();
   const router = useRouter();
 
   const [isDescriptionShown, setIsDescriptionShown] = React.useState(false);

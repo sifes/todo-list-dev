@@ -1,12 +1,12 @@
 import { useNotePageStore } from '@/store/useNotePageStore';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import React from 'react';
 
 interface InputsEditProps {}
 
 export const EditInputs: React.FC<InputsEditProps> = () => {
   const inputDescRef = React.useRef<HTMLInputElement>(null);
-  const { editTask } = useStore();
+  const { editTask } = useTasksStore();
   const {
     descriptionInput,
     setDescriptionInput,

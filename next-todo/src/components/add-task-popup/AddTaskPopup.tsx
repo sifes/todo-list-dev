@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import { Description } from './components/Description';
 import { Actions } from './components/Actions';
 import { Title } from './components/Title';

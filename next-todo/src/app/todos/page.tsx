@@ -7,20 +7,20 @@ import { Search } from '@/components/search/Search';
 import { Select } from '@/components/select/Select';
 import { ThemeToggle } from '@/components/theme-toggle/ThemeToggle';
 import React from 'react';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 
 export default function TodosPage() {
-  const {shownTasks, filterTasks, tasks, isAddPopupShown, filter } = useStore();
+  const { searchValue, shownTasks, filterTasks, tasks, isAddPopupShown, filter } = useTasksStore();
 
   React.useEffect(() => {
-    filterTasks()
-  }, [filter, tasks]);
+    filterTasks();
+  }, [filter, tasks, searchValue]);
 
   React.useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
       const parsedTasks = JSON.parse(storedTasks);
-      useStore.setState((state) => ({ ...state, tasks: parsedTasks }));
+      useTasksStore.setState((state) => ({ ...state, tasks: parsedTasks }));
     }
   }, []);
 

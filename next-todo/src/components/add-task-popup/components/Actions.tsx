@@ -1,4 +1,4 @@
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import React from 'react';
 
 interface ActionsProps {
@@ -14,7 +14,7 @@ interface ActionsProps {
 }
 
 export const Actions: React.FC<ActionsProps> = ({ setError, isDescriptionShown, description, title }) => {
-  const { toggleAddPopupShown, addTask } = useStore();
+  const { toggleAddPopupShown, addTask } = useTasksStore();
 
   return (
     <div className="content-popup__actions">

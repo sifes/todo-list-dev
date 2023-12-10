@@ -1,5 +1,5 @@
 'use client';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import { EditInputs } from '@/components/edit-inputs/EditInputs';
@@ -10,7 +10,7 @@ interface PageProps {}
 
 const Page: React.FC<PageProps> = () => {
   const params = useParams();
-  const { tasks } = useStore();
+  const { tasks } = useTasksStore();
   const { isEditing, setCurrentTask, currentTask } = useNotePageStore();
 
   React.useEffect(() => {

@@ -1,5 +1,5 @@
 import { useNotePageStore } from '@/store/useNotePageStore';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -7,7 +7,7 @@ interface ActionsNotePageProps {}
 
 export const ActionsNotePage: React.FC<ActionsNotePageProps> = ({}) => {
   const router = useRouter();
-  const { removeTask, toggleDone, editTask } = useStore();
+  const { removeTask, toggleDone, editTask } = useTasksStore();
   const { descriptionInput, titleInput, setError, isEditing, toggleIsEditing, currentTask } = useNotePageStore();
   return (
     <div className="note-page__actions actions-note-page">

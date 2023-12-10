@@ -1,19 +1,19 @@
 import React from 'react';
 import addIcon from '../../assets/add.svg';
-import { useStore } from '@/store/useStore';
+import { useTasksStore } from '@/store/useTasksStore';
 interface AddButtonProps {}
 
 export const AddButton: React.FC<AddButtonProps> = () => {
-  const { toggleAddPopupShown } = useStore();
+  const { toggleAddPopupShown } = useTasksStore();
 
   return (
     <button
-      className='add-btn'
+      className="add-btn"
       onClick={() => {
         toggleAddPopupShown();
       }}
     >
-      <img src={addIcon.src} alt='add task' />
+      <img src={addIcon.src} alt="add task" />
     </button>
   );
 };
