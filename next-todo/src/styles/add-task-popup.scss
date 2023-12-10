@@ -11,7 +11,7 @@
   z-index: 9999;
 
   &__content {
-    margin-top: 10%;
+    margin: 10% 12px;
   }
 }
 
@@ -21,10 +21,11 @@
   gap: 8px;
   border-radius: 16px;
   background: $background;
-  width: 500px;
+  width: calc(100% - 20px) ;
+  max-width: 500px;
   height: 289px;
   flex-shrink: 0;
-  padding: 18px 30px;
+  padding: 18px clamp(10px, 2.5vw, 30px) ;
   border: 1px solid $light;
   &__error {
     color: #ed4337;

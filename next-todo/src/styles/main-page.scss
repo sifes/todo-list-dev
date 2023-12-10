@@ -8,7 +8,7 @@
   margin: 0 auto;
   max-width: 1400px;
   align-items: center;
-  padding: 0 60px;
+  padding: 0 clamp(20px, 5vw, 60px);
   min-height: 100vh;
 }
 
@@ -22,6 +22,10 @@
     display: flex;
     gap: 16px;
     align-items: center;
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: end;
+    }
   }
 }
 
