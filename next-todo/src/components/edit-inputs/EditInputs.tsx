@@ -18,6 +18,11 @@ export const EditInputs: React.FC<InputsEditProps> = () => {
     currentTask,
   } = useNotePageStore();
 
+  React.useEffect(() => {
+    setTitleInput(currentTask.title);
+    setDescriptionInput(currentTask.description);
+  }, []);
+
   return (
     <>
       <input
@@ -25,7 +30,6 @@ export const EditInputs: React.FC<InputsEditProps> = () => {
         type="text"
         placeholder="Type something..."
         autoFocus
-        defaultValue={currentTask.title}
         value={titleInput}
         onChange={(e) => setTitleInput(e.target.value)}
         onKeyDown={(e) => {
@@ -48,7 +52,6 @@ export const EditInputs: React.FC<InputsEditProps> = () => {
         type="text"
         ref={inputDescRef}
         placeholder="Type something..."
-        defaultValue={currentTask.description}
         value={descriptionInput}
         onChange={(e) => setDescriptionInput(e.target.value)}
         onKeyDown={(e) => {
