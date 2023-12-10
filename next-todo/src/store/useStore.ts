@@ -3,6 +3,7 @@ import { create } from 'zustand';
 
 export const useStore = create<AppState>()((set) => ({
   tasks: [],
+  shownTasks: [],
   searchValue: '',
   filter: 'all',
   isAddPopupShown: false,
@@ -46,6 +47,20 @@ export const useStore = create<AppState>()((set) => ({
         task.description = description;
       }
       return { tasks: [...state.tasks] };
+    });
+  },
+  filterTasks: () => {
+    set((state) => {
+      let shownTasks = [...state.tasks];
+      if (state.filter === 'completed') {
+        shownTasks = shownTasks.filter((t) => t.done);
+      } else if (state.filter === 'not-completed') {
+        shownTasks = shownTasks.filter((t) => !t.done);
+      }
+      if (state.searchValue) {
+        shownTasks = shownTasks.filter((t) => t.title.toLowerCase().includes(state.searchValue.toLowerCase()));
+      }
+      return { shownTasks };
     });
   },
 }));

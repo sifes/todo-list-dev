@@ -4,6 +4,7 @@ type Filter = 'all' | 'completed' | 'not-completed';
 
 export interface AppState {
   tasks: Task[];
+  shownTasks: Task[];
   isAddPopupShown: boolean;
   filter: Filter;
   searchValue: string;
@@ -14,6 +15,7 @@ export interface AppState {
   setFilter: (filter: Filter) => void;
   setSearchValue: (value: string) => void;
   editTask: (title: string, id: number, description?: string) => void;
+  filterTasks: () => void;
 }
 export interface NotePageStore {
   currentTask: Task;

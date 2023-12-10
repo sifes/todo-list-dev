@@ -10,17 +10,10 @@ import React from 'react';
 import { useStore } from '@/store/useStore';
 
 export default function TodosPage() {
-  const { tasks, isAddPopupShown, filter } = useStore();
-  const [shownTasks, setShownTasks] = React.useState(tasks);
+  const {shownTasks, filterTasks, tasks, isAddPopupShown, filter } = useStore();
 
   React.useEffect(() => {
-    if (filter === 'all') {
-      setShownTasks(tasks);
-    } else if (filter === 'completed') {
-      setShownTasks(tasks.filter((task) => task.done));
-    } else {
-      setShownTasks(tasks.filter((task) => !task.done));
-    }
+    filterTasks()
   }, [filter, tasks]);
 
   React.useEffect(() => {
